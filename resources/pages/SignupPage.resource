@@ -21,3 +21,7 @@ Submit signup form
 Notice should be
     [Arguments]    ${expected_text}
     Wait For Elements State    css=.notice p >> text=${expected_text}    visible    5
+
+Alert should be
+    [Arguments]    ${expected_text}
+    Wait For Elements State    css=.alert-error >> text=${expected_text}    visible    5
