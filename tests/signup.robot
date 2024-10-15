@@ -25,16 +25,16 @@ Deve poder cadastrar um novo usuário
 Não deve permitir o cadastro com email duplicado
     [Tags]    dup
 
-    ${user_dup}    Create Dictionary    
+    ${user}    Create Dictionary    
     ...    name=Tony Stark
     ...    email=tonystark@mark85.com
     ...    password=pwd123
     
-    Remove user from database    ${user_dup}[email]
-    Insert user from database    ${user_dup}
+    Remove user from database    ${user}[email]
+    Insert user from database    ${user}
     
     Go to signup page
-    Submit signup form    ${user_dup}
+    Submit signup form    ${user}
     Notice should be      Oops! Já existe uma conta com o e-mail informado.
 
 Campos obrigatórios
@@ -50,3 +50,29 @@ Campos obrigatórios
     Alert should be    Informe seu nome completo
     Alert should be    Informe seu e-email
     Alert should be    Informe uma senha com pelo menos 6 digitos
+
+Não deve cadastrar com email incorreto
+    [Tags]    inv_email
+
+    ${invalid_emails}    Create List
+    ...    emailgmail.com
+    ...    email@@gmail.com
+    ...    email@.com
+    ...    email@gmailcom
+    ...    email@gmail.
+    ...    email!@gmail.com
+    ...    email()@gmail.com
+    ...    email@domain$%.com
+    ...    email@ gmail.com
+    ...    email@
+
+    FOR    ${email}    IN    @{invalid_emails}
+        ${user}    Create Dictionary    
+        ...    name=Felipe Barra
+        ...    email=${email}
+        ...    password=pwd123
+
+        Go to signup page
+        Submit signup form    ${user}
+        Alert should be    Digite um e-mail válido
+    END        
