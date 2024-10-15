@@ -7,11 +7,12 @@ Resource    ../resources/base.resource
 
 Deve poder cadastrar um novo usuário
 
-    ${name}         Set Variable    Felipe Barra
-    ${email}        Set Variable    felipe@mark85.com
-    ${password}     Set Variable    pwd123
+    ${user}    Create Dictionary    
+    ...    name=Tony Stark
+    ...    email=tonystark@mark85.com
+    ...    password=pwd123
 
-    Remove user from database    ${email}
+    Remove user from database    ${user}[email]
 
     Start Session
 
@@ -19,12 +20,39 @@ Deve poder cadastrar um novo usuário
 
     Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
 
-    Fill Text    id=name        ${name}
-    Fill Text    id=email       ${email}
-    Fill Text    id=password    ${password}
+    Fill Text    id=name        ${user}[name]
+    Fill Text    id=email       ${user}[email]
+    Fill Text    id=password    ${user}[password]
     
     Click        id=buttonSignup
 
     Wait For Elements State    css=.notice p >> text=Boas vindas ao Mark85, o seu gerenciador de tarefas.    visible    5
 
+    Finish Session
+
+Não deve permitir o cadastro com email duplicado
+    [Tags]    dup
+
+    ${user_dup}    Create Dictionary    
+    ...    name=Tony Stark
+    ...    email=tonystark@mark85.com
+    ...    password=pwd123
+    
+    Remove user from database    ${user_dup}[email]
+    Insert user from database    ${user_dup}
+    
+    Start Session
+
+    Go To    http://localhost:3000/signup
+
+    Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
+    
+    Fill Text    id=name        ${user_dup}[name]
+    Fill Text    id=email       ${user_dup}[email]
+    Fill Text    id=password    ${user_dup}[password]
+    
+    Click        id=buttonSignup
+
+    Wait For Elements State    css=.notice p >> text=Oops! Já existe uma conta com o e-mail informado.    visible    5
+    
     Finish Session
