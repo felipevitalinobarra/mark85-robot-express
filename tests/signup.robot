@@ -9,7 +9,8 @@ Test Teardown    Finish Session
 *** Test Cases ***
 
 Deve poder cadastrar um novo usuário
-
+    [Tags]    smoke
+    
     ${user}    Create Dictionary    
     ...    name=Tony Stark
     ...    email=tonystark@mark85.com
@@ -17,17 +18,9 @@ Deve poder cadastrar um novo usuário
 
     Remove user from database    ${user}[email]
 
-    Go To    ${BASE_URL}/signup
-
-    Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
-
-    Fill Text    id=name        ${user}[name]
-    Fill Text    id=email       ${user}[email]
-    Fill Text    id=password    ${user}[password]
-    
-    Click        id=buttonSignup
-
-    Wait For Elements State    css=.notice p >> text=Boas vindas ao Mark85, o seu gerenciador de tarefas.    visible    5
+    Go to signup page
+    Submit signup form    ${user}
+    Notice should be      Boas vindas ao Mark85, o seu gerenciador de tarefas.
 
 Não deve permitir o cadastro com email duplicado
     [Tags]    dup
@@ -40,14 +33,6 @@ Não deve permitir o cadastro com email duplicado
     Remove user from database    ${user_dup}[email]
     Insert user from database    ${user_dup}
     
-    Go To    ${BASE_URL}/signup
-
-    Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
-    
-    Fill Text    id=name        ${user_dup}[name]
-    Fill Text    id=email       ${user_dup}[email]
-    Fill Text    id=password    ${user_dup}[password]
-    
-    Click        id=buttonSignup
-
-    Wait For Elements State    css=.notice p >> text=Oops! Já existe uma conta com o e-mail informado.    visible    5
+    Go to signup page
+    Submit signup form    ${user_dup}
+    Notice should be      Oops! Já existe uma conta com o e-mail informado.
