@@ -1,5 +1,6 @@
 *** Settings ***
 
+Library    libs/database.py
 Library    Browser
 Resource    env.resource
 

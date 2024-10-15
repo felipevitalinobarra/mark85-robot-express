@@ -1,17 +1,17 @@
 *** Settings ***
 Documentation    Cenários de testes do cadastro de usuários
 
-Library     FakerLibrary
 Resource    ../resources/base.resource
 
 *** Test Cases ***
 
 Deve poder cadastrar um novo usuário
 
-    ${name}         FakerLibrary.Name
-    ${email}        FakerLibrary.Free Email
+    ${name}         Set Variable    Felipe Barra
+    ${email}        Set Variable    felipe@mark85.com
     ${password}     Set Variable    pwd123
 
+    Remove user from database    ${email}
 
     Start Session
 
