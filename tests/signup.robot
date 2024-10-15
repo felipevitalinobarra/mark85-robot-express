@@ -3,6 +3,9 @@ Documentation    Cenários de testes do cadastro de usuários
 
 Resource    ../resources/base.resource
 
+Test Setup       Start Session
+Test Teardown    Finish Session
+
 *** Test Cases ***
 
 Deve poder cadastrar um novo usuário
@@ -13,8 +16,6 @@ Deve poder cadastrar um novo usuário
     ...    password=pwd123
 
     Remove user from database    ${user}[email]
-
-    Start Session
 
     Go To    http://localhost:3000/signup
 
@@ -28,8 +29,6 @@ Deve poder cadastrar um novo usuário
 
     Wait For Elements State    css=.notice p >> text=Boas vindas ao Mark85, o seu gerenciador de tarefas.    visible    5
 
-    Finish Session
-
 Não deve permitir o cadastro com email duplicado
     [Tags]    dup
 
@@ -41,8 +40,6 @@ Não deve permitir o cadastro com email duplicado
     Remove user from database    ${user_dup}[email]
     Insert user from database    ${user_dup}
     
-    Start Session
-
     Go To    http://localhost:3000/signup
 
     Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
@@ -54,5 +51,3 @@ Não deve permitir o cadastro com email duplicado
     Click        id=buttonSignup
 
     Wait For Elements State    css=.notice p >> text=Oops! Já existe uma conta com o e-mail informado.    visible    5
-    
-    Finish Session
