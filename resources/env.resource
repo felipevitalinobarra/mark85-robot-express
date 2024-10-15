@@ -3,4 +3,4 @@ Documentation    Arquivo de variáveis
 
 *** Variables ***
 ${BROWSER}    chromium
-${URL}    http://localhost:3000
+${BASE_URL}    http://localhost:3000

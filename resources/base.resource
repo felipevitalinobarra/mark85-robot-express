@@ -1,14 +1,14 @@
 *** Settings ***
 
-Library    libs/database.py
-Library    Browser
+Library     libs/database.py
+Library     Browser
 Resource    env.resource
 
 *** Keywords ***
 
 Start Session
     New Browser    ${BROWSER}    headless=False
-    New Page       ${URL}
+    New Page       ${BASE_URL}
 
 Finish Session
     Take Screenshot    fullPage=True

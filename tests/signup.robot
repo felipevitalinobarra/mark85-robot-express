@@ -17,7 +17,7 @@ Deve poder cadastrar um novo usuário
 
     Remove user from database    ${user}[email]
 
-    Go To    http://localhost:3000/signup
+    Go To    ${BASE_URL}/signup
 
     Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
 
@@ -40,7 +40,7 @@ Não deve permitir o cadastro com email duplicado
     Remove user from database    ${user_dup}[email]
     Insert user from database    ${user_dup}
     
-    Go To    http://localhost:3000/signup
+    Go To    ${BASE_URL}/signup
 
     Wait For Elements State   css=h1 >> text=Faça seu cadastro   visible    5
     
