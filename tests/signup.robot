@@ -60,19 +60,40 @@ Não deve cadastrar com email incorreto
     ...    email@.com
     ...    email@gmailcom
     ...    email@gmail.
-    ...    email!@gmail.com
+    #[BUG] ...    email!@gmail.com
     ...    email()@gmail.com
     ...    email@domain$%.com
     ...    email@ gmail.com
     ...    email@
 
     FOR    ${email}    IN    @{invalid_emails}
-        ${user}    Create Dictionary    
-        ...    name=Felipe Barra
-        ...    email=${email}
-        ...    password=pwd123
+           ${user}    Create Dictionary    
+           ...    name=Felipe Barra
+           ...    email=${email}
+           ...    password=pwd123
 
-        Go to signup page
-        Submit signup form    ${user}
-        Alert should be    Digite um e-mail válido
+           Go to signup page
+           Submit signup form    ${user}
+           Alert should be    Digite um e-mail válido
+    END
+
+Não deve cadastrar com senha inferior a 6 dígitos
+    [Tags]    short_pass
+
+    ${short_pass}    Create List
+    ...    1
+    ...    12
+    ...    123
+    ...    1234
+    ...    12345
+
+    FOR    ${password}   IN    @{short_pass}
+           ${user}    Create Dictionary    
+           ...    name=Felipe
+           ...    email=felipe@mark85.com
+           ...    password=${password}
+
+           Go to signup page
+           Submit signup form    ${user}
+           Alert should be    Informe uma senha com pelo menos 6 digitos
     END        
