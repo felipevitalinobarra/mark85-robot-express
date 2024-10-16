@@ -11,9 +11,12 @@ Test Teardown     Finish Session
 Deve poder logar com um usuário pré-cadastrado
 
     ${user}    Create Dictionary
-    ...    name=Felipe Barra
-    ...    email=felipe@gmail.com
+    ...    name=Tony Stark
+    ...    email=tonystark@mark85.com
     ...    password=pwd123
+
+    Remove user from database    ${user}[email]
+    Insert user from database    ${user}
 
     Submit login form    ${user}
     User should be logged in    ${user}[name]
