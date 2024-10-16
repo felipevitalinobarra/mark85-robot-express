@@ -4,6 +4,7 @@ Library     libs/database.py
 Library     Browser
 Resource    env.resource
 Resource    ../resources/pages/SignupPage.resource
+Resource    ../resources/pages/LoginPage.resource
 
 *** Keywords ***
 
