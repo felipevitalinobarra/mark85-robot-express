@@ -7,7 +7,7 @@
         },
         "task": {
             "name": "Criar uma nova versão do iPod",
-            "tasks": [
+            "tags": [
                 "ios",
                 "music",
                 "ipod"

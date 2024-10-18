@@ -13,6 +13,7 @@ Resource    pages/components/Header.resource
 Resource    pages/SignupPage.resource
 Resource    pages/LoginPage.resource
 Resource    pages/TaskCreatePage.resource
+Resource    pages/TasksPage.resource
 
 *** Keywords ***
 
