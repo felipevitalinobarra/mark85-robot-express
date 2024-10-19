@@ -13,5 +13,16 @@
                 "ipod"
             ]
         }
+    },
+    "duplicate": {
+        "user": {
+            "name": "Walter White",
+            "email": "heisenberg@breakingbad.com",
+            "password": "pwd123"
+        },
+        "task": {
+            "name": "Fugir do Gus",
+            "tags": []
+        }
     }
 }
