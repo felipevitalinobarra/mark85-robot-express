@@ -40,5 +40,20 @@
                 "programação"
             ]
         }
+    },
+    "done": {
+        "user": {
+            "name": "Peter Parker",
+            "email": "spiderman@marvel.com",
+            "password": "pwd123"
+        },
+        "task": {
+            "name": "Construir um novo traje",
+            "tags": [
+                "hero",
+                "spider",
+                "costume"
+            ]
+        }
     }
 }

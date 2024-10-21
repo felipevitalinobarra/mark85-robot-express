@@ -9,3 +9,23 @@ Task should be registered
 
     Wait For Elements State    css=.task-todo >> text=${task_name}
     ...        visible    5
+
+Task should be complete
+    [Arguments]    ${task_name}
+
+    ${element}     Set Variable    css=.task-done >> text=${task_name}
+
+    Wait For Elements State        ${element}    
+    ...        visible    5
+
+    Get Style      ${element}    text-decoration-line    equal    line-through
+
+Mark task as completed
+    [Arguments]    ${task_name}
+    
+    ${element}     Set Variable
+    ...            //strong[text()="${task_name}"]/..//button[@class="item-toggle"]
+
+    Wait For Elements State    ${element}    visible    5
+
+    Click        ${element}
