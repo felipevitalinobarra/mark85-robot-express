@@ -10,14 +10,9 @@ Test Teardown     Finish Session
 Deve poder marcar uma tarefa como concluída
     ${data}    Get fixture    tasks    done
 
-    Clean user from database     ${data}[user][email]
-    Insert user from database    ${data}[user]
-
-    POST user session            ${data}[user]
-    POST a new task              ${data}[task]
-
-    Submit login form            ${data}[user]
-    User should be logged in     ${data}[user][name]
+    Reset user from database     ${data}[user]
+    Create a new task from API   ${data}
+    Do login                     ${data}[user]
 
     Mark task as completed       ${data}[task][name]
     Task should be complete      ${data}[task][name]

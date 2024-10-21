@@ -10,11 +10,8 @@ Test Teardown    Finish Session
 Deve poder cadastrar uma nova tarefa
     ${data}    Get fixture    tasks    create
     
-    Clean user from database     ${data}[user][email]
-    Insert user from database    ${data}[user]
-
-    Submit login form            ${data}[user]
-    User should be logged in     ${data}[user][name]
+    Reset user from database     ${data}[user]
+    Do login                     ${data}[user]
     
     Go to task form
     Submit task form             ${data}[task]
@@ -25,14 +22,9 @@ Não deve cadastrar tarefa com nome duplicado
 
     ${data}    Get fixture    tasks    duplicate
 
-    Clean user from database     ${data}[user][email]
-    Insert user from database    ${data}[user]
-
-    POST user session            ${data}[user]
-    POST a new task              ${data}[task]
-    
-    Submit login form            ${data}[user]
-    User should be logged in     ${data}[user][name]
+    Reset user from database     ${data}[user]
+    Create a new task from API   ${data}
+    Do login                     ${data}[user]
 
     Go to task form
     Submit task form             ${data}[task]
@@ -42,11 +34,8 @@ Não deve cadastrar uma nova tarefa quando atinge o limite de tags
     [Tags]    tags_limit
     ${data}    Get fixture    tasks    tags_limit
 
-    Clean user from database     ${data}[user][email]
-    Insert user from database    ${data}[user]
-    
-    Submit login form            ${data}[user]
-    User should be logged in     ${data}[user][name]
+    Reset user from database     ${data}[user]
+    Do login                     ${data}[user]
 
     Go to task form
     Submit task form             ${data}[task]
