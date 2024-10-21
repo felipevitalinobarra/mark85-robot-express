@@ -55,5 +55,19 @@
                 "costume"
             ]
         }
+    },
+    "delete": {
+        "user": {
+            "name": "Hank Pym",
+            "email": "hank@pymtech.com",
+            "password": "pwd123"
+        },
+        "task": {
+            "name": "Criar a IA do Ultron",
+            "tags": [
+                "ultron",
+                "IA"
+            ]
+        }
     }
 }
