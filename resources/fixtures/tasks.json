@@ -24,5 +24,21 @@
             "name": "Fugir do Gus",
             "tags": []
         }
+    },
+    "tags_limit": {
+        "user": {
+            "name": "Carlos Villagran",
+            "email": "kiko@televisa.com",
+            "password": "pwd123"
+        },
+        "task": {
+            "name": "Estudar Python",
+            "tags": [
+                "qax",
+                "python",
+                "pip",
+                "programação"
+            ]
+        }
     }
 }
